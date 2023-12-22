@@ -1,21 +1,16 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
+const passport = require('../passport/config');
 
-const secretKey = process.env.SECRET_JWT_KEY;
+router.get('/google',
+    passport.authenticate('google', { scope: ['profile'] }));
 
-// auth login
-router.post('/login', (req, res) => {
-    const { username, password } = req.body;
+router.get('/google/callback',
+    passport.authenticate('google', { failureRedirect: '/login', session: false }),
+    function (req, res) {
+        console.log(req.user._json);
+        res.redirect("http://localhost:5174/")
+    });
 
-    // Check if the user exists in the DB and the hashed password matches.
-
-    const token = jwt.sign({ sub: 1, username}, secretKey, { expiresIn: '7d'});
-
-    res.cookie('jwt', token, { httpOnly: true, maxAge: 7*24*60*60*1000 });
-
-    res.json({ message: "Login successful!"});
-})
-
-
-module.exports = router;    
+module.exports = router;
 
