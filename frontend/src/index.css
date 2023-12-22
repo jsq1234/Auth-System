@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.active{
+    text-decoration: underline;
+    text-underline-offset: 10px;
+    font-weight: 700;
+}
