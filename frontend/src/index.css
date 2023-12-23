@@ -2,18 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-.active{
+.active {
     text-decoration: underline;
     text-underline-offset: 10px;
     font-weight: 700;
 }
 
-#root{
+#root {
     height: 100%;
     width: 100%;
 }
 
-body{
+body {
     margin: 0;
     padding: 0;
     min-width: 100vh;

@@ -8,12 +8,16 @@ import { AlertTriangle } from 'lucide-react';
 const temp = 'flex items-center justify-center gap-4 border-2 transition-all hover:scale-105 hover:-translate-y-1 hover:shadow-md hover:shadow-gray-300 border-gray-100 w-full rounded-lg p-4 font-medium'
 
 export default function SignIn() {
-    const { register, handleSubmit, formState: {errors} } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
         console.log(data);
     }
 
+    const googleClick = () => {
+        window.open("http://localhost:8000/auth/google", "_self");
+    }
+    
     return (
         <div className="w-full bg-sign-in bg-cover">
             <div className='flex items-center w-full xl:max-w-screen-sm h-screen sm:shadow-2xl sm:shadow-blue-400 bg-slate-900 sm:bg-blue-950 dark:text-gray-200'>
@@ -25,14 +29,14 @@ export default function SignIn() {
 
                     <div className='flex gap-4 flex-col mx-auto w-3/4 mt-5 text-2xl'>
                         <Link to="/" >
-                            <button className={temp}>
+                            <button className={temp} onClick={googleClick}>
                                 <img src={googleLogo} width={32} height={32} alt='google logo' />
                                 Google
                             </button>
                         </Link>
                         <Link to="/">
                             <button className={temp}>
-                            <img src={githubLogo} width={32} height={32} alt='google logo' />
+                                <img src={githubLogo} width={32} height={32} alt='google logo' />
                                 Github
                             </button>
                         </Link>
@@ -49,8 +53,8 @@ export default function SignIn() {
                                     type="email"
                                     placeholder='email address'
                                     {...register("email", { required: true })}
-                                    className={`rounded-lg outline-none focus:outline-none mb-2 w-full text-black px-2 py-1 text-lg focus:ring-4 focus:ring-sky-400 focus:bg-slate-100 ${ errors.email && "ring-2 ring-red-500"}`} />
-                                    {errors.email && <span className='text-red-500 text-lg font-semibold ml-1 flex items-center gap-3 mt-1'><AlertTriangle /> Email is required.</span>}
+                                    className={`rounded-lg outline-none focus:outline-none mb-2 w-full text-black px-2 py-1 text-lg focus:ring-4 focus:ring-sky-400 focus:bg-slate-100 ${errors.email && "ring-2 ring-red-500"}`} />
+                                {errors.email && <span className='text-red-500 text-lg font-semibold ml-1 flex items-center gap-3 mt-1'><AlertTriangle /> Email is required.</span>}
                             </div>
                             <div>
                                 <label htmlFor='email' className='block text-lg mb-1 ml-1 font-medium'>Password</label>
@@ -58,8 +62,8 @@ export default function SignIn() {
                                     type="password"
                                     placeholder='password'
                                     {...register("password", { required: true })}
-                                    className={`rounded-lg outline-none focus:outline-none mb-2 w-full text-black px-2 py-1 text-lg focus:ring-4 focus:ring-sky-400 focus:bg-slate-100 ${ errors.password && "ring-2 ring-red-500"}`} />
-                                    {errors.password && <span className='text-red-500 text-lg font-semibold ml-1 flex items-center gap-3 mt-1'><AlertTriangle /> Password is required.</span>}
+                                    className={`rounded-lg outline-none focus:outline-none mb-2 w-full text-black px-2 py-1 text-lg focus:ring-4 focus:ring-sky-400 focus:bg-slate-100 ${errors.password && "ring-2 ring-red-500"}`} />
+                                {errors.password && <span className='text-red-500 text-lg font-semibold ml-1 flex items-center gap-3 mt-1'><AlertTriangle /> Password is required.</span>}
                             </div>
                             <button className='mt-5 text-2xl border-2 border-white rounded-lg px-4 py-2 focus:ring-4 focus:ring-white'>
                                 Sign In
