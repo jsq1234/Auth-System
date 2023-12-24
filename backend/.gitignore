@@ -1,0 +1,74 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Express.js
+/build/
+
+# React.js
+/build/
+/node_modules/
+
+# MongoDB
+*.db
+*.log
+*.conf
+
+# General
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE-specific files
+.idea/
+.vscode/
+
+# Logs
+logs/
+*.log
+
+# Dependency directories
+/jspm_packages/
+/bower_components/
+
+# Distribution directory
+/dist/
+/dist-web/
+
+# Yarn integrity file
+.yarn-integrity
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+Thumbs.db
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
