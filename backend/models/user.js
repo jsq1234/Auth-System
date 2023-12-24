@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const secretKey = process.env.SECRET_JWT_KEY;
 
 const userSchema = new mongoose.Schema({
@@ -43,6 +44,31 @@ const userSchema = new mongoose.Schema({
     /* Add more social providers or more things, like messages/bio/etc. */
 }, { timestamps: true });
 
+userSchema.pre('save', async function (next) {
+    try {
+        if (!this.isModified('password') || this.password === "") {
+            return next();
+        }
+
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(this.password, saltRounds);
+        this.password = hashedPassword;
+
+        next();
+    } catch (err) {
+        next(err);
+    }
+});
+
+userSchema.methods.comparePassword = async function (password) {
+    try {
+        const isSame = await bcrypt.compare(password, this.password);
+        return isSame;
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
 userSchema.methods.toJSON = function () {
     return {
         id: this._id,
@@ -62,7 +88,7 @@ userSchema.methods.generateJWT = function () {
         id: this._id,
         provider: this.provider,
         email: this.email
-    }, secretKey, { expiresIn : '100d' });
+    }, secretKey, { expiresIn: '100d' });
     return token;
 }
 
