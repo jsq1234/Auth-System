@@ -4,10 +4,13 @@ import reactLogo from "../assets/react.svg";
 import { NavLink } from 'react-router-dom';
 import UserMenu from './UserMenu';
 import SignInButton from './SignInButton';
+import { useSelector } from 'react-redux';
+
 
 export default function Navbar() {
     const [expanded, setExpanded] = useState(false);
-    let user = false;
+    const auth = useSelector(state => state.auth);
+
     return (
         <nav className="bg-white dark:bg-gray-900 w-full z-20 border-gray-200 dark:border-gray-600 text-xl">
             <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -16,7 +19,7 @@ export default function Navbar() {
                     <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white">Demo App</span>
                 </a>
                 <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                    { user ? <UserMenu /> : <SignInButton /> }
+                    {auth.isAuthenticated ? <UserMenu /> : <SignInButton />}
                     <button onClick={() => setExpanded(!expanded)} data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
                         <Menu />
                     </button>

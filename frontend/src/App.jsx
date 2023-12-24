@@ -1,12 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { fetchUserInfo } from './services';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from './redux/authSlice';
 
 function App() {
 
   return (
     <>
-    hi!
     </>
   )
 }
