@@ -31,7 +31,7 @@ router.post('/login', (req, res, next) => {
             email: user.email,
             username: user.username
         });
-    })
+    })(req, res, next);
 });
 
 router.post('/signup', (req, res, next) => {
