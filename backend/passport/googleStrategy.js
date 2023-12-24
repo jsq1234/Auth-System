@@ -22,7 +22,7 @@ const googleStrategy = new GoogleStrategy({
         some values as sparse.
     */
     try {
-        console.log(profile._json.email);
+        
         let user = await User.findOne({ email : profile._json.email });
         if(user){
             return cb(null, user);

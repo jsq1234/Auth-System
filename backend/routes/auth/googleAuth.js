@@ -1,9 +1,5 @@
 const router = require('express').Router();
-const jwt = require('jsonwebtoken');
 const passport = require('../../passport/config');
-const user = require('../../models/user');
-
-const key = process.env.SECRET_JWT_KEY;
 const clientRedirectUrl = process.env.CLIENT_REDIRECT_URL;
 
 router.get('/google',
@@ -21,7 +17,7 @@ router.get('/google/callback',
             localStorage so that you don't have to make a request after
             every refresh.
         */
-       const token = req.user.generateJWT();
+        const token = req.user.generateJWT();
         res.cookie('jwt', token);
         res.redirect(clientRedirectUrl);
     });

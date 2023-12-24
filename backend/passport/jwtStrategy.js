@@ -18,9 +18,17 @@ const jwtStrategy = new JwtStrategy(jwtOptions, async (payload, done) => {
         when you first created it. After that, you can access it using
         req.user in your next handler.
     */
-    console.log("payload : ");
-    console.log(payload);
-    return done(null, { id: payload.id, email: payload.email });
+    try {
+        const user = await User.findById(payload.id);
+        if (user) {
+            done(null, user);
+        } else {
+            done(null, false);
+        }
+    } catch (err) {
+        console.log(`Error : ${err.message}`);
+        done(err, false);
+    }
 })
 
 module.exports = jwtStrategy;

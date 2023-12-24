@@ -4,6 +4,7 @@ import googleLogo from '../assets/google_logo.svg';
 import githubLogo from '../assets/github_logo.svg';
 import { useForm } from 'react-hook-form';
 import { AlertTriangle } from 'lucide-react';
+import { githubAuthUrl, googleAuthUrl } from '../constants';
 
 const temp = 'flex items-center justify-center gap-4 border-2 transition-all hover:scale-105 hover:-translate-y-1 hover:shadow-md hover:shadow-gray-300 border-gray-100 w-full rounded-lg p-4 font-medium'
 
@@ -15,9 +16,12 @@ export default function SignIn() {
     }
 
     const googleClick = () => {
-        window.open("http://localhost:8000/auth/google", "_self");
+        window.open(googleAuthUrl,"_self");
     }
-    
+    const githubClick = () => {
+        window.open(githubAuthUrl, "_self");
+    }
+
     return (
         <div className="w-full bg-sign-in bg-cover">
             <div className='flex items-center w-full xl:max-w-screen-sm h-screen sm:shadow-2xl sm:shadow-blue-400 bg-slate-900 sm:bg-blue-950 dark:text-gray-200'>
@@ -35,7 +39,7 @@ export default function SignIn() {
                             </button>
                         </Link>
                         <Link to="/">
-                            <button className={temp}>
+                            <button className={temp} onClick={githubClick}>
                                 <img src={githubLogo} width={32} height={32} alt='google logo' />
                                 Github
                             </button>
