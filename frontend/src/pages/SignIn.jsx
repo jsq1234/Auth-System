@@ -31,9 +31,9 @@ export default function SignIn() {
     }
 
     return (
-        <div className="w-full h-full bg-sign-in bg-cover">
+        <div className="w-screen h-full bg-sign-in bg-cover">
             <div className='flex items-center w-screen h-screen xl:max-w-screen-sm sm:shadow-2xl sm:shadow-blue-400 bg-slate-900 sm:bg-blue-950 dark:text-gray-200'>
-                <div className='bg-slate-900 py-8 rounded-2xl mx-auto w-full sm:w-3/4 min-h-fit sm:border-2 sm:border-slate-200'>
+                <div className='bg-slate-900 py-8 rounded-2xl mx-auto w-screen sm:w-3/4 min-h-fit sm:border-2 sm:border-slate-200'>
                     <h1 className='text-4xl font-bold max-w-fit mx-auto font-serif'>Log in to your account</h1>
                     <h1 className='mt-2 text-2xl max-w-fit mx-auto font-serif'>Don't have an account? <Link to="/signup" className='font-semibold text-sky-400'>Sign Up</Link></h1>
 
